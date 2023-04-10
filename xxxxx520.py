@@ -1,6 +1,6 @@
 import requests
-import json
-import base64
+import os
+
 # index
 r = requests.get('https://www.xxxxx520.org/')
 print(r.cookies)
@@ -10,7 +10,7 @@ print('cookies  ', cookies)
 
 # login
 r = requests.post('https://www.xxxxx520.org/wp-admin/admin-ajax.php', cookies=cookies,
-                  data=json.loads(base64.b64decode(b'eyJhY3Rpb24iOiAidXNlcl9sb2dpbiIsICJ1c2VybmFtZSI6ICJvdXRtYW4iLCAicGFzc3dvcmQiOiAiMTIzMTIzMTIzIn0=').decode('utf-8')))
+                  data={'action': 'user_login', 'username': 'outman', 'password': os.environ.get('PASS_WORD')})
 print(r.cookies.get_dict())
 cookies |= r.cookies.get_dict()
 print('cookies  ', cookies)

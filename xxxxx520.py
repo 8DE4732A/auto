@@ -32,7 +32,7 @@ def two():
 
     # login
     r = requests.post('https://xxxxx520.cam/wp-admin/admin-ajax.php', cookies=cookies,
-                    data={'action': 'user_login', 'username': 'outman', 'password': 'fUpdor-8nimco-berjin'})
+                    data={'action': 'user_login', 'username': 'outman', 'password': os.environ.get('PASS_WORD')})
     print(r.cookies.get_dict())
     cookies |= r.cookies.get_dict()
     print('cookies  ', cookies)
